@@ -1,4 +1,8 @@
+# Experiments for Scatterplots
+
 ## Experiment 0 - Establishing Baselines
+
+Starting with 0 since this really isn't about the actual things I am interested in.
 
 Shape perception provides a baseline for distribution perception.
 
@@ -21,12 +25,40 @@ While these questions are explored in the perception literature, our goal is to 
 - vary position and size
 - hypotheses: (really sanity checks)
   - H0: accuracy correlated with size (but how?)
+      - if the target is small enough, this is just fits law accuracy kindof thing
+      - as the target grows it is the small accuracy + any estimation accuracy
   - H1: accuracy not correlated with position (shouldn't be)
-    - maybe it should be - gravity effects [https://journals.sagepub.com/doi/10.2466/pms.110.1.195-212], left right ideosyncracies (rashid p104), bias towards center (starting point, minimal motion) 
+    - maybe it should be 
+        - gravity effects [https://journals.sagepub.com/doi/10.2466/pms.110.1.195-212], 
+        - left right ideosyncracies (rashid p104), 
+        - bias towards center (starting point, minimal motion) 
   - H2: may be other confounds (input devices type, browser, order)
+      - how do we find them? check for interaction with any metadata we can gather
+  - H3: the variance due to variability (e.g. H2) is small enough that we still see H0,H1
 - design notes
-  - need to sample position well enough
-  -
+  - need to sample position & size well enough to get effects
+  - **might need to be within subjects, which factors out differences in display and other things**
+  - want to have position and size be decorrelated so we can see effects more easily
+  - because we are trying to get at the perception / motor accuracy baseline, it will be really important to control for as much as we can
+  - it is probably good enough to just check that the clicks are in the circles as the engagement check
+      - mark a bad trial and warn user if not (?)
+  - could put bad trials back at the end of the queue
+
+Stimulus generation idea:
+1. Stratify sampling of position (nxn grid, large and small sample per grid)
+2. 2 samples (large and small) per grid cell - circle radius R and L-r
+3. Sizes (arbitrary thinking) r between 10 and 90 px (so the sizes are r and 100-r)
+4. Randomize center positions within grid (doesn't really balance, but the grid stratification should get us close enough)
+5. Uniform random in size from 10-50 (and therefore 50-90)... could be scrambled stratified (create list of n^2 that is uniform and scrambled the order)
+
+Image Details
+1. 600x600 pixels (or is this too big? should it be 400x400 in case someone has a less than FHD screen)
+2. 4x4 grid gives 32 trials
+3. grids are 100-200, 200-300, 300-400, 400-500 - so even if circles are at edge, they still fit within image
+4. r = scramble([10,10,15,15,20,20,25,25,30,30,35,35,40,40,45,45])
+5. does color matter? 
+6. solid white background
+
 
 ## Related Work
 
